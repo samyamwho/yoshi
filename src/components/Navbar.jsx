@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import { mobile } from '../responsive';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
 height=60px;
@@ -81,7 +82,9 @@ const Navbar = () => {
           <Logo>YOSHII.</Logo>
         </Center>
         <Right>
+          <Link to="/register">
           <MenuItem>REGISTER</MenuItem>
+          </Link>
           <MenuItem>Sign in</MenuItem>
           <MenuItem>
           <Badge badgeContent={69} color="primary">
