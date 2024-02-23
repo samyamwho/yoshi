@@ -1,12 +1,13 @@
-import styled from "styled-components"
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import RoomIcon from '@mui/icons-material/Room';
-import PhoneIcon from '@mui/icons-material/Phone';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import React from "react";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import RoomIcon from "@mui/icons-material/Room";
+import PhoneIcon from "@mui/icons-material/Phone";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { mobile } from "../responsive";
+import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const SocialContainer = styled.div`
   display: flex;
 `;
 
-const SocialIcon = styled.div`
+const SocialIcon = styled.a`
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -40,6 +41,7 @@ const SocialIcon = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 20px;
+  text-decoration: none; /* Add this line to remove the underline */
 `;
 
 const Center = styled.div`
@@ -69,7 +71,6 @@ const Right = styled.div`
   flex: 1;
   padding: 20px;
   ${mobile({ backgroundColor: "#fff8f8" })}
-
 `;
 
 const ContactItem = styled.div`
@@ -79,7 +80,7 @@ const ContactItem = styled.div`
 `;
 
 const Payment = styled.img`
-    width: 50%;
+  width: 50%;
 `;
 
 const Footer = () => {
@@ -87,20 +88,18 @@ const Footer = () => {
     <Container>
       <Left>
         <Logo>YOSHII.</Logo>
-        <Desc>
-        これはヨシイクロージングストアの公式ウェブサイトです、<br />
-        </Desc>
+        <Desc>これはヨシイクロージングストアの公式ウェブサイトです、<br /></Desc>
         <SocialContainer>
-          <SocialIcon color="3B5999">
+          <SocialIcon href="https://www.facebook.com/samyam.shrestha.69" target="_blank" color="3B5999">
             <FacebookIcon />
           </SocialIcon>
-          <SocialIcon color="E4405F">
+          <SocialIcon href="https://www.instagram.com/samyam_shh/" target="_blank" color="E4405F">
             <InstagramIcon />
           </SocialIcon>
-          <SocialIcon color="55ACEE">
+          <SocialIcon href="https://twitter.com/samyam_who" target="_blank" color="55ACEE">
             <TwitterIcon />
           </SocialIcon>
-          <SocialIcon color="E60023">
+          <SocialIcon href="https://www.linkedin.com/in/samyam-shrestha-130991224/" target="_blank" color="E60023">
             <LinkedInIcon />
           </SocialIcon>
         </SocialContainer>
@@ -123,13 +122,14 @@ const Footer = () => {
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <RoomIcon style={{marginRight:"10px"}}/> Gatthaghar, Bhaktapur, Nepal
+          <RoomIcon style={{ marginRight: "10px" }} /> Gatthaghar, Bhaktapur,
+          Nepal
         </ContactItem>
         <ContactItem>
-          <PhoneIcon style={{marginRight:"10px"}}/> +977 9803948433
+          <PhoneIcon style={{ marginRight: "10px" }} /> +977 9803948433
         </ContactItem>
         <ContactItem>
-          <MailOutlineIcon style={{marginRight:"10px"}} /> samyamshr@gmail.com
+          <MailOutlineIcon style={{ marginRight: "10px" }} /> samyamshr@gmail.com
         </ContactItem>
         <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>

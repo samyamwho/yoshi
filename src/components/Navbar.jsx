@@ -10,7 +10,7 @@ const Container = styled.div`
 height=60px;
 ${mobile({ height: "50px" })}
 
-`
+`;
 const Wrapper = styled.div`
 padding:10px 20px;
 display:flex;
@@ -79,16 +79,22 @@ const Navbar = () => {
           </SearchContainer>
           </Left>
         <Center>
+          <Link to="/" style={{ textDecoration: 'none' }}>
           <Logo>YOSHII.</Logo>
+          </Link>
         </Center>
         <Right>
-          <Link to="/register">
+          <Link to="/register" style={{ textDecoration: 'none' }}>
           <MenuItem>REGISTER</MenuItem>
           </Link>
+          <Link to ="/login" style={{ textDecoration: 'none' }}>
           <MenuItem>Sign in</MenuItem>
+          </Link>
           <MenuItem>
           <Badge badgeContent={69} color="primary">
+            <Link to="/cart">
             <LocalMallOutlinedIcon/>
+            </Link>
          </Badge>
           </MenuItem>
         </Right>

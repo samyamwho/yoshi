@@ -1,4 +1,4 @@
-
+import React, { useState } from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import styled from 'styled-components';
 import { mobile } from '../responsive';
@@ -11,6 +11,7 @@ const Container = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
+
 const Title = styled.h1`
   font-size: 70px;
   margin-bottom: 20px;
@@ -21,7 +22,6 @@ const Desc = styled.div`
   font-weight: 300;
   margin-bottom: 20px;
   ${mobile({ textAlign: "center" })}
-
 `;
 
 const InputContainer = styled.div`
@@ -47,20 +47,53 @@ const Button = styled.button`
   color: white;
 `;
 
+const Popup = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid teal;
+  border-radius: 5px;
+  display: ${(props) => (props.show ? 'block' : 'none')};
+`;
 
 const Newsletter = () => {
-    return (
-      <Container>
-        <Title>Newsletter</Title>
-        <Desc>Get timely updates from your favorite products.</Desc>
-        <InputContainer>
-          <Input placeholder="Your email" />
-          <Button>
-            <SendIcon/>
-          </Button>
-        </InputContainer>
-      </Container>
-    );
+  const [email, setEmail] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleInputChange = (e) => {
+    setEmail(e.target.value);
   };
-  
-  export default Newsletter;
+
+  const handleButtonClick = () => {
+    setShowPopup(true);
+    setEmail('');
+
+    // Hide the popup after 5 seconds
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 5000);
+  };
+
+  return (
+    <Container>
+      <Title>Newsletter</Title>
+      <Desc>Get timely updates from your favorite products.</Desc>
+      <InputContainer>
+        <Input
+          placeholder="Your email"
+          value={email}
+          onChange={handleInputChange}
+        />
+        <Button onClick={handleButtonClick}>
+          <SendIcon />
+        </Button>
+      </InputContainer>
+      <Popup show={showPopup}>You'll receive new arrival notifications in your email.</Popup>
+    </Container>
+  );
+};
+
+export default Newsletter;

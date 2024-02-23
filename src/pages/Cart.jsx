@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import { mobile } from '../responsive';
 import Navbar from '../components/Navbar';
@@ -154,8 +154,26 @@ const Button = styled.button`
   color: white;
   font-weight: 600;
 `;
+const Popup = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  z-index: 1000;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: ${(props) => (props.show ? 'block' : 'none')};
+`;
 
 const Cart = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleCheckout = () => {
+    // You can perform any additional actions before showing the popup
+    setShowPopup(true);
+  };
   return (
     <Container>
         <Announcement/>
@@ -243,11 +261,18 @@ const Cart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ 80</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+            <Button onClick={handleCheckout}>CHECKOUT NOW</Button>
           </Summary>
         </Bottom>
       </Wrapper>
       <Footer/>
+      {/* Popup for payment details */}
+      <Popup show={showPopup}>
+        {/* Add your payment form or any content for payment details */}
+        <h2>Enter your payment details</h2>
+        {/* ... (add your payment form components) ... */}
+        <button onClick={() => setShowPopup(false)}>Close</button>
+      </Popup>
     </Container>
   );
 };

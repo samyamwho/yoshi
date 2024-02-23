@@ -1,19 +1,19 @@
-import styled from "styled-components"
-import Announcement from "../components/Announcement";
-import Navbar from "../components/Navbar";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
+import React, { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { mobile } from "../responsive";
+import styled from 'styled-components';
+import Announcement from '../components/Announcement';
+import Navbar from '../components/Navbar';
+import Newsletter from '../components/Newsletter';
+import Footer from '../components/Footer';
+import { mobile } from '../responsive';
 
 const Container = styled.div``;
-
 
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection:"column" })}
+  ${mobile({ padding: '10px', flexDirection: 'column' })}
 `;
 
 const ImgContainer = styled.div`
@@ -24,13 +24,13 @@ const Image = styled.img`
   width: 100%;
   height: 90vh;
   object-fit: cover;
-  ${mobile({ height: "40vh" })}
+  ${mobile({ height: '40vh' })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
-  ${mobile({ padding: "10px" })}
+  ${mobile({ padding: '10px' })}
 `;
 
 const Title = styled.h1`
@@ -51,7 +51,7 @@ const FilterContainer = styled.div`
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  ${mobile({ width: '100%' })}
 `;
 
 const Filter = styled.div`
@@ -85,7 +85,7 @@ const AddContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  ${mobile({ width: '100%' })}
 `;
 
 const AmountContainer = styled.div`
@@ -112,18 +112,44 @@ const Button = styled.button`
   cursor: pointer;
   font-weight: 500;
 
-  &:hover{
-      background-color: #f8f4f4;
+  &:hover {
+    background-color: #f8f4f4;
   }
 `;
 
+const Popup = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid teal;
+  border-radius: 5px;
+  display: ${(props) => (props.show ? 'block' : 'none')};
+`;
+
 const Product = () => {
-    return (
-        <Container>
-            <Announcement />
-            <Navbar />
-            <Wrapper>
-            <ImgContainer>
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleAddToCart = () => {
+    // You can add logic to actually add the product to the cart here
+
+    // Show the "Added to cart" popup
+    setShowPopup(true);
+
+    // Hide the popup after 3 seconds
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 3000);
+  };
+
+  return (
+    <Container>
+      <Announcement />
+      <Navbar />
+      <Wrapper>
+        <ImgContainer>
           <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
         </ImgContainer>
         <InfoContainer>
@@ -161,16 +187,16 @@ const Product = () => {
               <Amount>1</Amount>
               <AddIcon />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button onClick={handleAddToCart}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
+      </Wrapper>
 
-            </Wrapper>
+      <Newsletter />
+      <Footer />
+      <Popup show={showPopup}>Added to cart</Popup>
+    </Container>
+  );
+};
 
-            <Newsletter />
-            <Footer />
-        </Container>
-    )
-}
-
-export default Product
+export default Product;
